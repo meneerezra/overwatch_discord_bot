@@ -1,4 +1,4 @@
-package main
+package models
 
 import (
 	"encoding/json"
@@ -22,11 +22,11 @@ var (
 )
 
 type Client struct {
-	client  *http.Client
+	Client  *http.Client
 	BaseURL string
 }
 
-func (client *Client) newRequest(method, path string, headers http.Header, params url.Values) (*http.Request, error) {
+func (client *Client) NewRequest(method, path string, headers http.Header, params url.Values) (*http.Request, error) {
 	if params == nil {
 		params = url.Values{}
 	}
@@ -56,7 +56,7 @@ func (client *Client) newRequest(method, path string, headers http.Header, param
 	return req, nil
 }
 
-func (client *Client) do(req *http.Request, v interface{}) error {
+func (client *Client) Do(req *http.Request, v interface{}) error {
 	var (
 		err     error
 		resp    *http.Response
@@ -64,7 +64,7 @@ func (client *Client) do(req *http.Request, v interface{}) error {
 	)
 
 	for retries > 0 {
-		resp, err = client.client.Do(req)
+		resp, err = client.Client.Do(req)
 		if shouldRetry(err, resp) {
 			log.Println(err)
 			retries -= 1
