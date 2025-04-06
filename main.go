@@ -2,8 +2,11 @@ package main
 
 import (
 	"fmt"
-	"overwatch_discord_bot/jsonUtils"
-	"overwatch_discord_bot/jsonUtils/jsonModels"
+	"net/http"
+	"overwatch_discord_bot/models"
+	"overwatch_discord_bot/overfast"
+	"overwatch_discord_bot/utils/jsonUtils"
+	"overwatch_discord_bot/utils/jsonUtils/jsonModels"
 )
 
 func main() {
@@ -15,7 +18,15 @@ func main() {
 	}
 
 
+	overfastClient := overfast.OverfastClient{
+		Client: models.Client{
+			Client: &http.Client{},
+			BaseURL: settings.OverfastURL,
+		},
+	}
 
+
+	fmt.Println(overfastClient.GetPlayerByName())
 
 
 }
