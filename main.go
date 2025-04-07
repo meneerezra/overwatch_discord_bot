@@ -18,6 +18,7 @@ func main() {
 	}
 
 
+
 	overfastClient := overfast.OverfastClient{
 		Client: models.Client{
 			Client: &http.Client{},
@@ -25,8 +26,13 @@ func main() {
 		},
 	}
 
-
-	fmt.Println(overfastClient.GetPlayerByName())
-
+	playersResponse, err := overfastClient.GetPlayersByName("eaglestring")
+	if err != nil {
+		fmt.Println(err)
+		return 
+	}
+	for _, player := range playersResponse.Results {
+		fmt.Println(player.Name)
+	}
 
 }

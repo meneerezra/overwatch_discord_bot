@@ -7,7 +7,7 @@ type Settings struct {
 }
 
 func (s *Settings) DefaultValues() {
-	s.DiscordToken = ""
+	s.DiscordToken = "yayap"
 	s.OverfastURL = "https://overfast-api.tekrop.fr/"
 	s.BestOverwatchApiURL = "https://best-overwatch-api.herokuapp.com/"
 }
